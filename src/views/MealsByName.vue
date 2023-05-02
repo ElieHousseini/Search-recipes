@@ -17,6 +17,7 @@ import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import store from "../store";
 import Meals from '../components/Meals.vue'
+import { searchMealsActionType } from '../store/actionTypes'
 
 
 const route = useRoute();
@@ -25,9 +26,9 @@ const meals = computed(() => store.state.searchedMeals);
 
 const searchMeals = () => {
   if (keyword.value) {
-    store.dispatch("searchMeals", keyword.value);
+    store.dispatch(searchMealsActionType, keyword.value);
   } else {
-    store.commit("setSearchedMeals", []);
+    store.commit(searchMealsActionType, []);
   }
 }
 onMounted(() => {

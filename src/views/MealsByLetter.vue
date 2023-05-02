@@ -18,6 +18,7 @@ import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import store from "../store";
 import Meals from "../components/Meals.vue";
+import { searchMealsByLetterActionType } from '../store/actionTypes'
 
 
 const route = useRoute();
@@ -25,9 +26,9 @@ const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const meals = computed(() => store.state.mealsByLetter);
 
 watch(route, () => {
-  store.dispatch("searchMealsByLetter", route.params.letter);
+  store.dispatch(searchMealsByLetterActionType, route.params.letter);
 });
 onMounted(() => {
-  store.dispatch("searchMealsByLetter", route.params.letter);
+  store.dispatch(searchMealsByLetterActionType, route.params.letter);
 });
 </script>

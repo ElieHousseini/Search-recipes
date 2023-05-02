@@ -12,6 +12,7 @@ import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import store from "../store";
 import Meals from '../components/Meals.vue'
+import { searchMealsByIngredientActionType } from '../store/actionTypes'
 
 
 const route = useRoute();
@@ -19,6 +20,6 @@ const ingredient = computed(() => store.state.ingredient)
 const meals = computed(() => store.state.mealsByIngredient)
 
 onMounted(() => {
-  store.dispatch('searchMealsByIngredient', route.params.ingredient)
+  store.dispatch(searchMealsByIngredientActionType, route.params.ingredient)
 })
 </script>
