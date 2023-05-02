@@ -1,0 +1,6 @@
+export const home = 'home'
+export const byName = 'byName'
+export const byLetter = 'byLetter'
+export const ingredients = 'ingredients'
+export const byIngredient = 'byIngredient'
+export const mealDetails = 'mealDetails'

@@ -22,6 +22,7 @@ import { useRouter } from "vue-router";
 import axiosClient from "../axiosClient";
 import store from "../store";
 import { setIngredientMutationType } from '../store/mutationTypes'
+import { byIngredient } from '../router/routerTypes'
 
 const router = useRouter();
 const keyword = ref("");
@@ -37,7 +38,7 @@ const computedIngredients = computed(() => {
 function openIngredient(ingredient) {
   store.commit(setIngredientMutationType, ingredient)
   router.push({
-    name: "byIngredient",
+    name: byIngredient,
     params: { ingredient: ingredient.strIngredient },
   });
 }
