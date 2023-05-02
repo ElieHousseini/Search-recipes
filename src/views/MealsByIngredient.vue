@@ -1,30 +1,24 @@
 <template>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 p-8">
-        <MealItem v-for="meal of meals" :key="meal.idMeal" :meal="meal" class="bg-white shadow rounded-xl" />
-    </div>
+  <div class="p-8 pb-0">
+    <h1 class="text-4xl font-bold mb-4 text-orange-500">Meals for {{ ingredient.strIngredient }}</h1>
+  </div>
+
+  <Meals :meals="meals" />
 </template>
 
 <script setup>
-import MealItem from '../components/MealItem.vue';
-
-import { computed } from '@vue/reactivity'
-import { onMounted, watch } from 'vue';
-import { useRoute } from 'vue-router'
-import store from '../store';
-import { searchMealsByIngredientActionType } from '../store/actionTypes'
+import { computed } from "@vue/reactivity";
+import { onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
+import store from "../store";
+import Meals from '../components/Meals.vue'
 
 
-const route = useRoute()
+const route = useRoute();
+const ingredient = computed(() => store.state.ingredient)
 const meals = computed(() => store.state.mealsByIngredient)
 
 onMounted(() => {
-    store.dispatch(searchMealsByIngredientActionType, route.params.ingredient)
+  store.dispatch('searchMealsByIngredient', route.params.ingredient)
 })
-
-watch(route, () => {
-  if (route.params.ingredient) {
-    store.dispatch(searchMealsByIngredientActionType, route.params.ingredient);
-  }
-});
-
 </script>

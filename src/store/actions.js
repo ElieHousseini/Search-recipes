@@ -1,6 +1,7 @@
 import axiosClient from "../axiosClient"
 import {setSearchedMealsMutationType, setMealsByLetterMutationType, setMealsByIngredientsMutationType} from './mutationTypes'
 
+
 const searchMeals = async ({ commit }, keyword) => {
     const { data } = await axiosClient.get(`search.php?s=${keyword}`)
     commit(setSearchedMealsMutationType, data.meals)
